@@ -1,0 +1,37 @@
+name: 'Deploy to Kubernetes cluster'
+description: 'Deploy to Kubernetes cluster via kubebot'
+inputs:
+  environment:
+    description: '[dev|prod]'
+    required: true
+    default: 'dev'
+  namespace:
+    description: 'Choose the target Kubernetes namespace.'
+    required: true
+  service:
+    description: 'Name of the service in the cluster.'
+    required: true
+  tag:
+    description: 'Docker image tag'
+    required: true
+  registry:
+    description: 'The container registry where the docker image is'
+    required: false
+  repository:
+    description: 'The repository in the container registry'
+    required: false
+    default: 'webjet'
+  manifest:
+    description: 'Path to the manifest file which will be used for deployment'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.environment }}
+    - ${{ inputs.namespace }}
+    - ${{ inputs.service }}
+    - ${{ inputs.tag }}
+    - ${{ inputs.registry }}
+    - ${{ inputs.repository }}
+    - ${{ manifest }}
