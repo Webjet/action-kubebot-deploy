@@ -6,9 +6,9 @@ namespace=$NAMESPACE
 service=$SERVICENAME
 [ -z "$service" ] && service=$3
 tag=$TAG
-[ -z "$tag"] && tag=$4
+[ -z "$tag" ] && tag=$4
 registry=$CONTAINERREGISTRY
-[ -z "$registry"] && registry=$5
+[ -z "$registry" ] && registry=$5
 repository=$6
 
 # response=$(curl -s -X POST "http://kubebot.default/deploy/$1/$2/$3/$4?registry=$5&repository=$6" \
