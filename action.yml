@@ -33,4 +33,4 @@ runs:
     - ${{ inputs.tag }}
     - ${{ inputs.registry }}
     - ${{ inputs.repository }}
-    - ${{ manifest }}
+    - ${{ inputs.manifest }}
