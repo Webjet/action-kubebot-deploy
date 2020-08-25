@@ -24,13 +24,5 @@ inputs:
     description: 'Path to the manifest file which will be used for deployment'
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.environment }}
-    - ${{ inputs.namespace }}
-    - ${{ inputs.service }}
-    - ${{ inputs.tag }}
-    - ${{ inputs.registry }}
-    - ${{ inputs.repository }}
-    - ${{ inputs.manifest }}
+  using: 'node12'
+  main: 'dist/index.js'
