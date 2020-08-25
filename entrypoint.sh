@@ -3,15 +3,14 @@
 environment=$1
 namespace=$NAMESPACE
 [ -z "$namespace" ] && namespace=$2
-service=$SERVICENAME
-[ -z "$service" ] && service=$3
+service=$3
 tag=$TAG
 [ -z "$tag" ] && tag=$4
 registry=$CONTAINERREGISTRY
 [ -z "$registry" ] && registry=$5
 repository=$6
 
-echo "http://kubebot.default/deploy/$environment/$namespace/$service/$tag?registry=$registry&repository=$repository"
+cat /deployment.yaml
 
 # response=$(curl -s -X POST "http://kubebot.default/deploy/$environment/$namespace/$service/$tag?registry=$registry&repository=$repository" \
 #         --data-binary "@/deployment.yaml" \
