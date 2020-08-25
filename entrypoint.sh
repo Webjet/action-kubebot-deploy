@@ -10,7 +10,7 @@ registry=$CONTAINERREGISTRY
 [ -z "$registry" ] && registry=$5
 repository=$6
 
-cat /deployment.yaml
+ls /deployment.yaml
 
 # response=$(curl -s -X POST "http://kubebot.default/deploy/$environment/$namespace/$service/$tag?registry=$registry&repository=$repository" \
 #         --data-binary "@/deployment.yaml" \
