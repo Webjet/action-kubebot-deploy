@@ -10,11 +10,11 @@ tag=$TAG
 registry=$CONTAINERREGISTRY
 [ -z "$registry" ] && registry=$5
 repository=$6
-echo "---"
-ls /
-echo "---"
-# response=$(curl -s -X POST "http://kubebot.default/deploy/$1/$2/$3/$4?registry=$5&repository=$6" \
-#         --data-binary "@deployment.yaml" \
+
+echo "http://kubebot.default/deploy/$environment/$namespace/$service/$tag?registry=$registry&repository=$repository"
+
+# response=$(curl -s -X POST "http://kubebot.default/deploy/$environment/$namespace/$service/$tag?registry=$registry&repository=$repository" \
+#         --data-binary "@/deployment.yaml" \
 #         -H 'Content-Type: application/yaml' \
 #         -H 'Expect:' \
 #         -D -)
