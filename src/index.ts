@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import * as fs from 'fs'
-
+import { deploy } from './utils'
 try {
     const environment = core.getInput('environment');
     const serviceName = core.getInput('service');
@@ -14,9 +14,8 @@ try {
         throw new Error(`${manifest} not found`);
     }
 
-    const url = `http://kubebot.default/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
-    core.info(url);
-
+    const url = `https://theage.com.au/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
+    deploy(url, manifest);
 } catch (error) {
   core.setFailed(error.message);
 }

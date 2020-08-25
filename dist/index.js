@@ -21,6 +21,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core = __importStar(require("@actions/core"));
 var fs = __importStar(require("fs"));
+var utils_1 = require("./utils");
 try {
     var environment = core.getInput('environment');
     var serviceName = core.getInput('service');
@@ -32,8 +33,8 @@ try {
     if (!fs.existsSync(manifest)) {
         throw new Error(manifest + " not found");
     }
-    var url = "http://kubebot.default/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
-    core.info(url);
+    var url = "https://theage.com.au/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
+    utils_1.deploy(url, manifest);
 }
 catch (error) {
     core.setFailed(error.message);
