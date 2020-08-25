@@ -5830,14 +5830,25 @@ exports.endpoint = endpoint;
 
 const core = __webpack_require__(576);
 const github = __webpack_require__(315);
+const fs = __webpack_require__(747);
 
 try {
     const environment = core.getInput('environment');
     const serviceName = core.getInput('service');
     const manifest = core.getInput('manifest');
     const repo = core.getInput('repository');
+    const registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
+    const namespace = core.getInput('namespace') || process.env['NAMESPACE'];
+    const tag = core.getInput('tag') || process.env['TAG'];
+    
+    if (fs.existsSync(manifest)) {
+        core.info("exists");
+    } else {
+        core.info("!exists");
+    }
+    const url = `http://kubebot.default/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
+    core.info(url);
 
-    console.log(JSON.stringify(process.env));
 } catch (error) {
   core.setFailed(error.message);
 }
