@@ -1,6 +1,5 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
-const fs = require('fs');
+import * as core from '@actions/core'
+import * as fs from 'fs'
 
 try {
     const environment = core.getInput('environment');
@@ -11,11 +10,10 @@ try {
     const namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     const tag = core.getInput('tag') || process.env['TAG'];
     
-    if (fs.existsSync(manifest)) {
-        core.info("exists");
-    } else {
-        core.info("!exists");
+    if (!fs.existsSync(manifest)) {
+        throw new Error(`${manifest} not found`);
     }
+
     const url = `http://kubebot.default/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
     core.info(url);
 
