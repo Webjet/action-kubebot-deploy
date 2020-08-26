@@ -30,7 +30,6 @@ try {
     var registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
     var namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     var tag = core.getInput('tag') || process.env['TAG'];
-    core.info(JSON.stringify(process.env, null, 2));
     if (!fs.existsSync(manifest)) {
         throw new Error(manifest + " not found");
     }

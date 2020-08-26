@@ -34,5 +34,5 @@ const logOutput = (res: AxiosResponse<any>) => {
         "status_code": res.status,
         "headers": res.headers,
         "data": res.data
-    }, null, '\t'));
+    }, null, 2));
 }
