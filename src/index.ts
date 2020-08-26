@@ -14,7 +14,7 @@ try {
         throw new Error(`${manifest} not found`);
     }
 
-    const url = `https://theage.com.au/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
+    const url = `http://kubebot.default/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
     deploy(url, manifest);
 } catch (error) {
   core.setFailed(error.message);
