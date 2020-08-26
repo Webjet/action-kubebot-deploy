@@ -33,7 +33,7 @@ try {
     if (!fs.existsSync(manifest)) {
         throw new Error(manifest + " not found");
     }
-    var url = "https://theage.com.au/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
+    var url = "http://kubebot.default/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
     utils_1.deploy(url, manifest);
 }
 catch (error) {
