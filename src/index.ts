@@ -9,7 +9,7 @@ try {
     const registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
     const namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     const tag = core.getInput('tag') || process.env['TAG'];
-    core.info(JSON.stringify(process.env, null, 2));
+    
     if (!fs.existsSync(manifest)) {
         throw new Error(`${manifest} not found`);
     }

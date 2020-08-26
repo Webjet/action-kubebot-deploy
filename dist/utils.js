@@ -105,6 +105,6 @@ var logOutput = function (res) {
         "status_code": res.status,
         "headers": res.headers,
         "data": res.data
-    }, null, '\t'));
+    }, null, 2));
 };
 //# sourceMappingURL=utils.js.map
