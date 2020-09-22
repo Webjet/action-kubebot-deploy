@@ -38,7 +38,7 @@ try {
     if (!fs.existsSync(manifest)) {
         throw new Error(manifest + " not found");
     }
-    if (flag_deploytoprod == "prod" && flag_deploytoprod == 0){
+    if (environment == "prod" && flag_deploytoprod == 0){
         return;
     }
     var url = kubebot + "/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
