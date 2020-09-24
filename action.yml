@@ -23,6 +23,9 @@ inputs:
   manifest:
     description: 'Path to the manifest file which will be used for deployment'
     required: true
+  deploytoprod:
+    description: 'Flag Deploy to Prod.'
+    required: false    
 runs:
   using: 'node12'
   main: 'dist/index.js'

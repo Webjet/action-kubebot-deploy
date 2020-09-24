@@ -30,12 +30,16 @@ try {
     var registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
     var namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     var tag = core.getInput('tag') || process.env['TAG'];
+    var flag_deploytoprod = core.getInput('tag') || process.env['EPLOYTOPROD'];
     var kubebot = process.env['KUBEBOT'];
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
     }
     if (!fs.existsSync(manifest)) {
         throw new Error(manifest + " not found");
+    }
+    if (environment == "prod" && flag_deploytoprod == 0){
+        return;
     }
     var url = kubebot + "/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
     utils_1.deploy(url, manifest);
