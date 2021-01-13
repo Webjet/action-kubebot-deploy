@@ -26,6 +26,10 @@ inputs:
   deploytoprod:
     description: 'Flag Deploy to Prod.'
     required: false    
+  xwatch:
+    description: 'Flag to check deployment.'
+    required: false   
+    default: 'true'  
 runs:
   using: 'node12'
   main: 'dist/index.js'

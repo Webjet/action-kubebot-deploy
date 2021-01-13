@@ -10,6 +10,7 @@ try {
     const namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     const tag = core.getInput('tag') || process.env['TAG'];
     const kubebot = process.env['KUBEBOT'];
+    const x_watch = "false"
     if (!kubebot) {
       throw new Error('kubebot url is needed!');
     }
@@ -18,7 +19,7 @@ try {
     }
 
     const url = `${kubebot}/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
-    deploy(url, manifest);
+    deploy(url, manifest, x_watch);
 } catch (error) {
   core.setFailed(error.message);
 }
