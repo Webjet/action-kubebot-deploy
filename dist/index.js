@@ -14,35 +14,42 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var core = __importStar(require("@actions/core"));
-var fs = __importStar(require("fs"));
-var utils_1 = require("./utils");
+const core = __importStar(require("@actions/core"));
+const fs = __importStar(require("fs"));
+const utils_1 = require("./utils");
 try {
-    var environment = core.getInput('environment');
-    var serviceName = core.getInput('service');
-    var manifest = core.getInput('manifest');
-    var repo = core.getInput('repository');
-    var registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
-    var namespace = core.getInput('namespace') || process.env['NAMESPACE'];
-    var tag = core.getInput('tag') || process.env['TAG'];
-    var flag_deploytoprod = core.getInput('tag') || process.env['EPLOYTOPROD'];
-    var kubebot = process.env['KUBEBOT'];
-    if (!kubebot) {
-        throw new Error('kubebot url is needed!');
-    }
-    if (!fs.existsSync(manifest)) {
-        throw new Error(manifest + " not found");
-    }
-    if (environment == "prod" && flag_deploytoprod == 0){
-        return;
-    }
-    var url = kubebot + "/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
-    utils_1.deploy(url, manifest);
+    (() => __awaiter(void 0, void 0, void 0, function* () {
+        const environment = core.getInput('environment');
+        const serviceName = core.getInput('service');
+        const manifest = core.getInput('manifest');
+        const repo = core.getInput('repository');
+        const registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
+        const namespace = core.getInput('namespace') || process.env['NAMESPACE'];
+        const tag = core.getInput('tag') || process.env['TAG'];
+        const kubebot = process.env['KUBEBOT'];
+        if (!kubebot) {
+            throw new Error('kubebot url is needed!');
+        }
+        if (!fs.existsSync(manifest)) {
+            throw new Error(`${manifest} not found`);
+        }
+        const url = `${kubebot}/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
+        yield utils_1.deploy(url, manifest);
+    }))();
 }
 catch (error) {
     core.setFailed(error.message);

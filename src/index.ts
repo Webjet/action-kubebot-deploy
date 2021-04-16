@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 import * as fs from 'fs'
 import { deploy } from './utils'
 try {
+  (async () => {
     const environment = core.getInput('environment');
     const serviceName = core.getInput('service');
     const manifest = core.getInput('manifest');
@@ -18,7 +19,8 @@ try {
     }
 
     const url = `${kubebot}/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
-    deploy(url, manifest);
+    await deploy(url, manifest);
+  })();
 } catch (error) {
   core.setFailed(error.message);
 }
