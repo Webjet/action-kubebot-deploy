@@ -4,16 +4,15 @@ inputs:
   environment:
     description: '[dev|prod]'
     required: true
-    default: 'dev'
   namespace:
     description: 'Choose the target Kubernetes namespace.'
-    required: true
+    required: false
   service:
     description: 'Name of the service in the cluster.'
-    required: true
+    required: false
   tag:
     description: 'Docker image tag'
-    required: true
+    required: false
   registry:
     description: 'The container registry where the docker image is'
     required: false
@@ -24,14 +23,9 @@ inputs:
   manifest:
     description: 'Path to the manifest file which will be used for deployment'
     required: true
+  deploytoprod:
+    description: 'Flag Deploy to Prod.'
+    required: false    
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.environment }}
-    - ${{ inputs.namespace }}
-    - ${{ inputs.service }}
-    - ${{ inputs.tag }}
-    - ${{ inputs.registry }}
-    - ${{ inputs.repository }}
-    - ${{ manifest }}
+  using: 'node12'
+  main: 'dist/index.js'
