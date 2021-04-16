@@ -47,7 +47,7 @@ exports.deploy = (url, file) => __awaiter(void 0, void 0, void 0, function* () {
     }
     catch (err) {
         // append error message
-        err.message = `Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.\n#{err.message}`;
+        err.message = `Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.\n${err.message}`;
         throw err;
     }
 });

@@ -13,7 +13,7 @@ export const deploy = async (url: string, file: string) => {
         logOutput(res);
     } catch (err) {
         // append error message
-        err.message = `Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.\n#{err.message}`;
+        err.message = `Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.\n${err.message}`;
         throw err;
     }
 }
