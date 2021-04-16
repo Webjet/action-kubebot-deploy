@@ -20,3 +20,11 @@ env:
     manifest: 'pipeline/dev-wjau.yaml'
 
 ```
+
+## Publish
+
+You don't want to check-in all packages in `node_modules` so here an additional steps before check-in.
+
+```bash
+npm i && npm run build && rm -rf node_modules && npm i --only=prod && git add node_modules/* src/* dist/*
+```
