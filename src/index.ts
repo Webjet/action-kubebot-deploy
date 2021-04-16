@@ -5,7 +5,7 @@ try {
   const environment = core.getInput('environment');
   const serviceName = core.getInput('service');
   const manifest = core.getInput('manifest');
-  const repo = core.getInput('repository');
+  const repo = core.getInput('repository') || process.env['REPOSITORY'];
   const registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
   const namespace = core.getInput('namespace') || process.env['NAMESPACE'];
   const tag = core.getInput('tag') || process.env['TAG'];
