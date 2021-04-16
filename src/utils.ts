@@ -12,7 +12,6 @@ export const deploy = async (url: string, file: string) => {
         const res = await axios(req);
         logOutput(res);
     } catch (err) {
-        logOutput(err.response);
         // append error message
         err.message = `Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.\n#{err.message}`;
         throw err;
