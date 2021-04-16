@@ -19,7 +19,6 @@ inputs:
   repository:
     description: 'The repository in the container registry'
     required: false
-    default: 'webjet'
   manifest:
     description: 'Path to the manifest file which will be used for deployment'
     required: true
