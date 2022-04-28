@@ -81,7 +81,7 @@ exports.deploy = function (url, file) {
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
-                        logOutput(err_1.response);
+                        //logOutput(err_1.response);
                         core.setFailed("Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.");
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
