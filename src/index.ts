@@ -19,6 +19,6 @@ try {
 
     const url = `${kubebot}/deploy/${environment}/${namespace}/${serviceName}/${tag}?registry=${registry}&repository=${repo}`;
     deploy(url, manifest);
-} catch (error) {
+} catch (error: any) {
   core.setFailed(error.message);
 }
