@@ -12,8 +12,7 @@ export const deploy = (url: string, file: string) => {
             const res = await axios(req);
             logOutput(res);
         } catch (err) {
-            logOutput(err.response);
-            core.setFailed("Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.");
+            core.setFailed("Something went wrong with the deployment, please check if Kubebot online.");
         }
     });
 }

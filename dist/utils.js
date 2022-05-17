@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -62,7 +66,7 @@ exports.deploy = void 0;
 var core = __importStar(require("@actions/core"));
 var axios_1 = __importDefault(require("axios"));
 var fs = __importStar(require("fs"));
-exports.deploy = function (url, file) {
+var deploy = function (url, file) {
     fs.readFile(file, function (err, d) {
         return __awaiter(this, void 0, void 0, function () {
             var req, res, err_1;
@@ -71,18 +75,17 @@ exports.deploy = function (url, file) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         req = buildReq(url, d);
-                        core.info(req.method + " " + req.url);
-                        core.info("manifest: " + file);
+                        core.info("".concat(req.method, " ").concat(req.url));
+                        core.info("manifest: ".concat(file));
                         core.info('----------');
-                        return [4 /*yield*/, axios_1.default(req)];
+                        return [4 /*yield*/, (0, axios_1.default)(req)];
                     case 1:
                         res = _a.sent();
                         logOutput(res);
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
-                        logOutput(err_1.response);
-                        core.setFailed("Something went wrong with the deployment, query the Kb-Trace-Id in sumo for more details.");
+                        core.setFailed("Something went wrong with the deployment, please check if Kubebot online.");
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
@@ -90,6 +93,7 @@ exports.deploy = function (url, file) {
         });
     });
 };
+exports.deploy = deploy;
 var buildReq = function (url, data) {
     return {
         url: url,

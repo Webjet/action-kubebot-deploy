@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -30,19 +34,15 @@ try {
     var registry = core.getInput('registry') || process.env['CONTAINERREGISTRY'];
     var namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     var tag = core.getInput('tag') || process.env['TAG'];
-    var flag_deploytoprod = core.getInput('tag') || process.env['EPLOYTOPROD'];
     var kubebot = process.env['KUBEBOT'];
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
     }
     if (!fs.existsSync(manifest)) {
-        throw new Error(manifest + " not found");
+        throw new Error("".concat(manifest, " not found"));
     }
-    if (environment == "prod" && flag_deploytoprod == 0){
-        return;
-    }
-    var url = kubebot + "/deploy/" + environment + "/" + namespace + "/" + serviceName + "/" + tag + "?registry=" + registry + "&repository=" + repo;
-    utils_1.deploy(url, manifest);
+    var url = "".concat(kubebot, "/deploy/").concat(environment, "/").concat(namespace, "/").concat(serviceName, "/").concat(tag, "?registry=").concat(registry, "&repository=").concat(repo);
+    (0, utils_1.deploy)(url, manifest);
 }
 catch (error) {
     core.setFailed(error.message);
