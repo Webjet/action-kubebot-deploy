@@ -76,6 +76,8 @@ var deploy = function (url, file, h) {
                         _a.trys.push([0, 2, , 3]);
                         req = buildReq(url, d, h);
                         core.info("".concat(req.method, " ").concat(req.url));
+                        core.info('----------');
+                        console.dir(req);
                         core.info("manifest: ".concat(file));
                         core.info('----------');
                         return [4 /*yield*/, (0, axios_1.default)(req)];

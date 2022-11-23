@@ -7,6 +7,8 @@ export const deploy = (url: string, file: string, h: object) => {
         try{
             const req = buildReq(url, d, h);
             core.info(`${req.method} ${req.url}`);
+            core.info('----------');
+            console.dir(req);
             core.info(`manifest: ${file}`);
             core.info('----------');
             const res = await axios(req);
@@ -21,7 +23,11 @@ const buildReq = (url: string, data: any, h: object): AxiosRequestConfig => {
     return {
         url: url,
         method: 'POST',
-        headers: h,
+        headers: {
+            "GITHUB-REPO-URL":"test1",
+            "GITHUB-WORKFLOW-ID":"test2",
+            "GITHUB-BUILD-DATESTAMP":"test3",
+        },
         data: data
     };
 };
