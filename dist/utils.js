@@ -100,7 +100,7 @@ var buildReq = function (url, data, h) {
     return {
         url: url,
         method: 'POST',
-        headers: JSON.stringify(h),
+        headers: h,
         data: data
     };
 };

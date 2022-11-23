@@ -37,7 +37,7 @@ try {
     var kubebot = process.env['KUBEBOT'];
     var gitRunId = core.getInput('gitrunid');
     var gitRunTime = new Date();
-    var gitURL = "https://github.com/" + core.getInput('repository');
+    var gitURL = "https://github.com/" + core.getInput('repo');
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
     }
