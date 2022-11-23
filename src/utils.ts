@@ -23,7 +23,7 @@ const buildReq = (url: string, data: any, h: object): AxiosRequestConfig => {
     return {
         url: url,
         method: 'POST',
-        headers: JSON.stringify(h),
+        headers: h,
         data: data
     };
 };

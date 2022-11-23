@@ -29,7 +29,7 @@ inputs:
   gitrunid:
     description: "Git run ID"
     required: true
-    default: ${{ github.GITHUB_RUN_ID }}    
+    default: ${{ github.run_id }}    
 
 runs:
   using: 'node16'
