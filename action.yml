@@ -30,10 +30,7 @@ inputs:
     description: "Git run ID"
     required: true
     default: ${{ github.GITHUB_RUN_ID }}    
-  repository:
-    description: "Git Repository"
-    required: true
-    default: ${{ github.GITHUB_ACTION_REPOSITORY }}   
+
 runs:
   using: 'node16'
   main: 'dist/index.js'
