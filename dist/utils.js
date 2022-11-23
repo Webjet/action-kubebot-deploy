@@ -100,7 +100,11 @@ var buildReq = function (url, data, h) {
     return {
         url: url,
         method: 'POST',
-        headers: h,
+        headers: {
+            "GITHUB-REPO-URL": "test1",
+            "GITHUB-WORKFLOW-ID": "test2",
+            "GITHUB-BUILD-DATESTAMP": "test3",
+        },
         data: data
     };
 };
