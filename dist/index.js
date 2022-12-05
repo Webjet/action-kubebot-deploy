@@ -38,6 +38,7 @@ try {
     var gitRunId = core.getInput('gitrunid');
     var gitRunTime = new Date();
     var gitURL = "https://github.com/" + core.getInput('repositoryfullname');
+    var headCommitMsg = core.getInput('headcommit');
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
     }
@@ -49,6 +50,7 @@ try {
         "GITHUB-REPO-URL": gitURL,
         "GITHUB-WORKFLOW-ID": gitRunId,
         "GITHUB-BUILD-DATESTAMP": gitRunTime,
+        "GITHUB-HEAD-COMMIT-MESSAGE": headCommitMsg,
     };
     var url = "".concat(kubebot, "/deploy/").concat(environment, "/").concat(namespace, "/").concat(serviceName, "/").concat(tag, "?registry=").concat(registry, "&repository=").concat(repo);
     (0, utils_1.deploy)(url, manifest, headers);
