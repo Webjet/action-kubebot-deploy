@@ -40,7 +40,7 @@ try {
     var githubRepository = core.getInput('repositoryfullname');
     var githubOwner = core.getInput('repository_owner');
     var gitURL = "https://github.com/" + core.getInput('repositoryfullname');
-    var headCommitMsg = String(core.getInput('headcommit')).replace(/\n/g, ' ');
+    var headCommitMsg = String(core.getInput('headcommit')).replace(/\n/g, ' ').replace(/\r/g, ' ');
     console.dir(headCommitMsg);
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
