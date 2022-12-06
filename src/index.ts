@@ -13,7 +13,7 @@ try {
     const gitRunId = core.getInput('gitrunid');
     const gitRunTime = new Date();
     const gitURL = "https://github.com/" + core.getInput('repositoryfullname');
-    const headCommitMsg = core.getInput('headcommit');
+    const headCommitMsg = String(core.getInput('headcommit')).replace('\n', ' ');
     if (!kubebot) {
       throw new Error('kubebot url is needed!');
     }
