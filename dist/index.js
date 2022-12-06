@@ -35,14 +35,30 @@ try {
     var namespace = core.getInput('namespace') || process.env['NAMESPACE'];
     var tag = core.getInput('tag') || process.env['TAG'];
     var kubebot = process.env['KUBEBOT'];
+    var gitRunId = core.getInput('gitrunid');
+    var gitRunTime = new Date();
+    var githubRepository = core.getInput('repositoryfullname');
+    var githubOwner = core.getInput('repository_owner');
+    var gitURL = "https://github.com/" + core.getInput('repositoryfullname');
+    var headCommitMsg = String(core.getInput('headcommit')).replace(/\n/g, ' ');
+    console.dir(headCommitMsg);
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
     }
     if (!fs.existsSync(manifest)) {
         throw new Error("".concat(manifest, " not found"));
     }
+    var headers = {
+        'Content-Type': 'application/yaml',
+        "GITHUB-REPO-URL": gitURL,
+        "GITHUB-REPO": githubRepository,
+        "GITHUB-REPO-OWNER": githubOwner,
+        "GITHUB-WORKFLOW-ID": gitRunId,
+        "GITHUB-BUILD-DATESTAMP": gitRunTime,
+        "GITHUB-HEAD-COMMIT-MESSAGE": headCommitMsg,
+    };
     var url = "".concat(kubebot, "/deploy/").concat(environment, "/").concat(namespace, "/").concat(serviceName, "/").concat(tag, "?registry=").concat(registry, "&repository=").concat(repo);
-    (0, utils_1.deploy)(url, manifest);
+    (0, utils_1.deploy)(url, manifest, headers);
 }
 catch (error) {
     core.setFailed(error.message);

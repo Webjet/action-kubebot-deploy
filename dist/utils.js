@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -66,7 +66,7 @@ exports.deploy = void 0;
 var core = __importStar(require("@actions/core"));
 var axios_1 = __importDefault(require("axios"));
 var fs = __importStar(require("fs"));
-var deploy = function (url, file) {
+var deploy = function (url, file, h) {
     fs.readFile(file, function (err, d) {
         return __awaiter(this, void 0, void 0, function () {
             var req, res, err_1;
@@ -74,8 +74,10 @@ var deploy = function (url, file) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        req = buildReq(url, d);
+                        req = buildReq(url, d, h);
                         core.info("".concat(req.method, " ").concat(req.url));
+                        core.info('----------');
+                        console.dir(req);
                         core.info("manifest: ".concat(file));
                         core.info('----------');
                         return [4 /*yield*/, (0, axios_1.default)(req)];
@@ -94,13 +96,11 @@ var deploy = function (url, file) {
     });
 };
 exports.deploy = deploy;
-var buildReq = function (url, data) {
+var buildReq = function (url, data, h) {
     return {
         url: url,
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/yaml'
-        },
+        headers: h,
         data: data
     };
 };
