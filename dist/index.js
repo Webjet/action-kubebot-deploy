@@ -38,7 +38,8 @@ try {
     var gitRunId = core.getInput('gitrunid');
     var gitRunTime = new Date();
     var gitURL = "https://github.com/" + core.getInput('repositoryfullname');
-    var headCommitMsg = String(core.getInput('headcommit')).replace('\n', ' ');
+    var headCommitMsg = String(core.getInput('headcommit')).replace(/\n/g, ' ');
+    console.dir(headCommitMsg);
     if (!kubebot) {
         throw new Error('kubebot url is needed!');
     }
