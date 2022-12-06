@@ -34,6 +34,10 @@ inputs:
     description: 'Full name.'
     required: true
     default: ${{ github.repository }} 
+  owner:
+    description: 'Repo Owner.'
+    required: true
+    default: ${{ github.repository_owner }} 
   headcommit:
     description: 'Head commit message'
     required: true

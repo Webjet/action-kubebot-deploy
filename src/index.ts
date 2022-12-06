@@ -12,7 +12,8 @@ try {
     const kubebot = process.env['KUBEBOT'];
     const gitRunId = core.getInput('gitrunid');
     const gitRunTime = new Date();
-    const gitURL = "https://github.com/" + core.getInput('repositoryfullname');
+    const githubRepository = core.getInput('repositoryfullname');
+    const githubOwner = core.getInput('repository_owner');
     const headCommitMsg = String(core.getInput('headcommit')).replace(/\n/g, ' ');
     console.dir(headCommitMsg);
     if (!kubebot) {
@@ -24,7 +25,8 @@ try {
 
     var headers = {
       'Content-Type': 'application/yaml',
-      "GITHUB-REPO-URL":gitURL,
+      "GITHUB-REPO":githubRepository,
+      "GITHUB-REPO-OWNER":githubOwner,
       "GITHUB-WORKFLOW-ID":gitRunId,
       "GITHUB-BUILD-DATESTAMP":gitRunTime,
       "GITHUB-HEAD-COMMIT-MESSAGE": headCommitMsg,
