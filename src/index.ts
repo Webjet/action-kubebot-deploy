@@ -13,7 +13,7 @@ try {
     const gitRunId = core.getInput('gitrunid');
     const gitRunTime = new Date();
     const githubRepository = core.getInput('repositoryfullname');
-    const githubOwner = core.getInput('repository_owner');
+    const githubOwner = core.getInput('owner');
     const gitURL = "https://github.com/" + core.getInput('repositoryfullname');
     const headCommitMsg = String(core.getInput('headcommit')).replace(/\n/g, ' ').replace(/\r/g, ' ');
     console.dir(headCommitMsg);

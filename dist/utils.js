@@ -87,7 +87,7 @@ var deploy = function (url, file, h) {
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
-                        core.setFailed("Something went wrong with the deployment, please check if Kubebot online.");
+                        core.setFailed("Something went wrong with the deployment: " + err_1);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }

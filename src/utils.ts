@@ -14,7 +14,7 @@ export const deploy = (url: string, file: string, h: object) => {
             const res = await axios(req);
             logOutput(res);
         } catch (err) {
-            core.setFailed("Something went wrong with the deployment, please check if Kubebot online.");
+            core.setFailed("Something went wrong with the deployment: " + err);
         }
     });
 }
