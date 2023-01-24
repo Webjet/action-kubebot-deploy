@@ -14,7 +14,8 @@ export const deploy = (url: string, file: string, h: object) => {
             const res = await axios(req);
             logOutput(res);
         } catch (err) {
-            core.setFailed("Something went wrong with the deployment: " + err);
+            // core.setFailed("Something went wrong with the deployment: " + err);
+            core.setFailed(JSON.stringify({ "message": "Please check your deployment logs in SumoLogic, and verify the cluster with KUBECTL", "innerException" : err}));
         }
     });
 }
