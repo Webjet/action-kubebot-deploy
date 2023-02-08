@@ -87,8 +87,7 @@ var deploy = function (url, file, h) {
                         return [3 /*break*/, 3];
                     case 2:
                         err_1 = _a.sent();
-                        // core.setFailed("Something went wrong with the deployment: " + err_1);
-                        core.setFailed(JSON.stringify({ "message": "Please check your deployment logs in SumoLogic, and verify the cluster with KUBECTL", "innerException" : err_1}));
+                        core.setFailed("Something went wrong with the deployment: " + err_1);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
                 }
