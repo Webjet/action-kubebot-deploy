@@ -15,11 +15,11 @@ jobs:
       #   with:
       #     env-json-base64: ${{ secrets.JSONDATA64 }}
 
-      - name: build
-        uses: webjet/action-build-image@v1
-        with:
-          dockerfile-path: "dockerfile"
-          push: "false"
+      # - name: build
+      #   uses: webjet/action-build-image@v1
+      #   with:
+      #     dockerfile-path: "dockerfile"
+      #     push: "false"
 
       # - name: run test
       #   uses: webjet/action-kubebot-deploy@golang
