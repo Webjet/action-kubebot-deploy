@@ -10,10 +10,10 @@ jobs:
       - name: checkout
         uses: webjet/action-checkout@v1
 
-      - name: init
-        uses: webjet/action-kubernetes-init@v1
-        with:
-          env-json-base64: ${{ secrets.JSONDATA64 }}
+      # - name: init
+      #   uses: webjet/action-kubernetes-init@v1
+      #   with:
+      #     env-json-base64: ${{ secrets.JSONDATA64 }}
 
       - name: build
         uses: webjet/action-build-image@v1
