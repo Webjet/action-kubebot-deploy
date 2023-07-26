@@ -1,0 +1,21 @@
+version: "3.4"
+networks:
+  kind:
+    name: "local"
+services:
+  action-kubebot-deploy:
+    build:
+      target: debug
+      dockerfile: ./Dockerfile
+    working_dir: /src
+    entrypoint: /bin/sh
+    stdin_open: true
+    tty: true 
+    container_name: "action-kubebot-deploy"
+    image: "action-kubebot-deploy:local"
+    networks:
+    - local
+    environment:
+      TEST: "true"
+    volumes:
+    - ./src:/src

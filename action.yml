@@ -44,5 +44,5 @@ inputs:
     default: ${{ github.event.head_commit.message }} 
 
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: 'docker'
+  main: 'dockerfile'

@@ -1,0 +1,30 @@
+name: IntegrationTest
+
+on: [push]
+
+jobs:
+  pipeline:
+    runs-on: [ webjet, linux ]
+
+    steps:
+      - name: checkout
+        uses: webjet/action-checkout@v1
+
+      - name: init
+        uses: webjet/action-kubernetes-init@v1
+        with:
+          env-json-base64: ${{ secrets.JSONDATA64 }}
+
+      - name: build
+        uses: webjet/action-build-image@v1
+        with:
+          dockerfile-path: "dockerfile"
+          push: "false"
+
+      - name: run test
+        uses: webjet/action-kubebot-deploy@golang
+        with:
+          environment: 'dev'
+          service: 'action-kubebot-deploy'
+          manifest: 'pipeline/dev.yaml'
+      
