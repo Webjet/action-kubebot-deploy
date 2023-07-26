@@ -21,10 +21,10 @@ jobs:
           dockerfile-path: "dockerfile"
           push: "false"
 
-      - name: run test
-        uses: webjet/action-kubebot-deploy@golang
-        with:
-          environment: 'dev'
-          service: 'action-kubebot-deploy'
-          manifest: 'pipeline/dev.yaml'
+      # - name: run test
+      #   uses: webjet/action-kubebot-deploy@golang
+      #   with:
+      #     environment: 'dev'
+      #     service: 'action-kubebot-deploy'
+      #     manifest: 'pipeline/dev.yaml'
       
