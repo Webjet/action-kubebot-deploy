@@ -46,11 +46,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'dockerfile'
-  args:
-  - ${{ inputs.environment }}
-  - ${{ inputs.namespace }}
-  - ${{ inputs.service }}
-  - ${{ inputs.tag }}
-  - ${{ inputs.registry }}
-  - ${{ inputs.repository }}
-  - ${{ inputs.manifest }}

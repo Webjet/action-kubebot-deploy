@@ -15,6 +15,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o app -ldflags -s
 
 FROM scratch as runtime
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=build /app/app /
+COPY --from=build /app/app /app
 
-ENTRYPOINT [ "./app" ]
+ENTRYPOINT [ "/app" ]
