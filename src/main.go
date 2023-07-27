@@ -5,6 +5,7 @@ import (
   "os"
 	"strings"
 	"time"
+	"errors"
 )
 
 func init() {
@@ -19,7 +20,14 @@ func main() {
 	manifest := getInput("manifest")
 	if manifest == "" {
 		panic("manifest input is required!")
-	}
+	} else {
+		if _, err := os.Stat(manifest); errors.Is(err, os.ErrNotExist) {
+			log.WithFields(log.Fields{
+				"error": err,
+			}).Error("manifest file not found!")
+		}
+  }
+
 
 	registry := getInput("registry") 
 	if registry == "" {

@@ -13,9 +13,9 @@ services:
     tty: true 
     container_name: "action-kubebot-deploy"
     image: "action-kubebot-deploy:local"
+    environment:
+      INPUT_MANIFEST: "./test/manifest.yaml"
     networks:
     - local
-    environment:
-      TEST: "true"
     volumes:
     - ./src:/src

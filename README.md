@@ -20,3 +20,19 @@ env:
     manifest: 'pipeline/dev-wjau.yaml'
 
 ```
+
+## Build 
+
+```
+docker compose build
+```
+
+## Debug and Test
+
+```
+docker compose up -d 
+
+docker exec -it action-kubebot-deploy sh
+
+go build -o app && ./app
+```
