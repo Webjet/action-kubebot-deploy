@@ -15,7 +15,24 @@ services:
     image: "action-kubebot-deploy:local"
     environment:
       INPUT_MANIFEST: "./test/manifest.yaml"
+      INPUT_HEADCOMMIT: "Testing \n head commit \r message ..."
+      INPUT_REPOSITORYFULLNAME: "Webjet/action-kubebot-deploy"
+      INPUT_REPOSITORY: "webjet"
+      INPUT_REGISTRY: "containerregistrydev.azurecr.io"
+      INPUT_TAG: "558bcb-20230727043804"
+      INPUT_NAMESPACE: "default"
+      INPUT_ENVIRONMENT: "dev"
+      INPUT_SERVICE: "action-kubebot-deploy"
+      KUBEBOT: "http://kubebot.bots"
     networks:
     - local
     volumes:
     - ./src:/src
+  kubebot.bots:
+    container_name: "kubebot.bots"
+    image: mockoon/cli:latest
+    command: "-d /data/mock.json -r -p 80 -t"
+    volumes:
+    - ./mock.json:/data/mock.json
+    networks:
+    - local
