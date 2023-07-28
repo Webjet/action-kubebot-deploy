@@ -4,9 +4,8 @@ This action can be used to deploy your docker application to K8s clusters using 
 In your github action workflow, make sure you have the following env as this action relies on them, otherwise, provide them in the inputs of the action
 ```
 env:
-  NAMESPACE: flights
-  CONTAINERREGISTRY: ${{ secrets.CONTAINERREGISTRY }}
-  TAG: abc
+  NAMESPACE: test
+  IMAGENAME: my-test-image
 ```
 
 ## Example usage
@@ -16,7 +15,7 @@ env:
   uses: webjet/action-kubebot-deploy@v1
   with:
     environment: 'dev'
-    service: 'searchservice-wjau'
+    service: 'testservice-wjau'
     manifest: 'pipeline/dev-wjau.yaml'
 
 ```
