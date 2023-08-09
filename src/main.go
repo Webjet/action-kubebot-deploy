@@ -122,6 +122,7 @@ func getValidateInput() {
 
 func deploy(kubebotUrl string, yaml []byte, traceID string) {
 	
+	startTime := time.Now()
 	requestBody := bytes.NewBuffer(yaml)
 	requestUrl := fmt.Sprintf("%s/deploy/%s/%s/%s/%s?registry=%s&repository=%s" ,kubebotUrl, environment, namespace, serviceName, tag, registry, repo)
 	 
@@ -165,8 +166,9 @@ func deploy(kubebotUrl string, yaml []byte, traceID string) {
   
 	if res.StatusCode != 200 {
 
+		endTime := startTime.Add(time.Minute * time.Duration(10))
 		sumoQuery := "_sourcecategory = k8s/dev/bots/kubebot AND " + traceID
-		sumoUrl := "https://webjet.au.sumologic.com/ui/#/search/create?query=" + url.QueryEscape(sumoQuery)
+		sumoUrl := fmt.Sprintf("https://webjet.au.sumologic.com/ui/#/search/create?query=%v&startTime=%v&endTime=%v", url.QueryEscape(sumoQuery),startTime.UnixMilli(), endTime.UnixMilli())
 		
 		fmt.Println("DEPLOYMENT FAILED, please follow 2 steps below to troubleshoot")
 		fmt.Println("1 - Check your deployment with KUBECTL commands")
