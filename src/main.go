@@ -122,7 +122,7 @@ func getValidateInput() {
 
 func deploy(kubebotUrl string, yaml []byte, traceID string) {
 	
-	startTime := time.Now()
+	startTime := time.Now().Add(time.Minute * time.Duration(-10))
 	requestBody := bytes.NewBuffer(yaml)
 	requestUrl := fmt.Sprintf("%s/deploy/%s/%s/%s/%s?registry=%s&repository=%s" ,kubebotUrl, environment, namespace, serviceName, tag, registry, repo)
 	 
