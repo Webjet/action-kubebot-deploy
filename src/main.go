@@ -172,7 +172,7 @@ func deploy(kubebotUrl string, yaml []byte, traceID string) {
 		
 		fmt.Println("DEPLOYMENT FAILED, please follow 2 steps below to troubleshoot")
 		fmt.Println("1 - Check your deployment with KUBECTL commands")
-		fmt.Println("2 - Check your deployment logs in Sumologic: " + sumoUrl)
+		fmt.Println("2 - Please allow up to 5 minutes for deployment logs to ingest and check your deployment logs in Sumologic: " + sumoUrl)
 		panic("deployment failed!")
 	} else {
 		fmt.Println("DEPLOYMENT COMPLETE")
