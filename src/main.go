@@ -166,7 +166,7 @@ func deploy(kubebotUrl string, yaml []byte, traceID string) {
   
 	if res.StatusCode != 200 {
 
-		endTime := startTime.Add(time.Minute * time.Duration(30))
+		endTime := time.Now().Add(time.Minute * time.Duration(30))
 		sumoQuery := "_sourcecategory = k8s/dev/bots/kubebot AND " + traceID
 		sumoUrl := fmt.Sprintf("https://webjet.au.sumologic.com/ui/#/search/create?query=%v&startTime=%v&endTime=%v", url.QueryEscape(sumoQuery),startTime.UnixMilli(), endTime.UnixMilli())
 		
