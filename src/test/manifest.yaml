@@ -1,0 +1,38 @@
+Kind: kubebot.values/v1
+deployment:
+  image: itinerarylist-image
+  port: 3000
+  env:
+  - name: TEST
+    value: BLAH
+  - name: MAX_QUEUE_TO_READ
+    value: 32
+configmap:
+  path: /config
+  files:
+    config.json: |
+      {
+        "config": {
+          "monthlyCalendarUrl": "https://services.webjet.com.au/api/flights/dealfinder/monthlycalendar/",
+          "enableMonthlyCalendar": true,
+          "enableSchedules": true,
+          "country": "AU"
+        }
+      }
+    appSettings.json: |-
+      {
+
+      }
+secret:
+  path: /secrets/
+ingress:
+  rewrite-target: /test/
+  ssi: true
+  auth:
+    type: basic
+    secret: auth-test
+  rules:
+  - hostname: services.webjet.com.au
+    path: /api/helloworld/
+  - hostname: static.webjet.com.au
+    path: /api/helloworld/
