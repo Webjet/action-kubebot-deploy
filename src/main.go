@@ -144,7 +144,7 @@ func deploy(kubebotUrl string, yaml []byte, traceID string) {
 	req.Header.Set("GITHUB-HEAD-COMMIT-MESSAGE", githubCommitMsg)
 
 	client := http.Client{
-	 Timeout: 300 * time.Second,
+	 Timeout: 1800 * time.Second,
   }
 
 	res, err := client.Do(req)
