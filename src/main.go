@@ -91,7 +91,7 @@ func getValidateInput() {
 	}
 
 	gitRunId = getInput("gitrunid")
-	gitRunTime = time.Now().Format(time.RFC3339Nano)
+	gitRunTime = time.Now().Format(time.RFC3339)
 	githubRepository = getInput("repositoryfullname")
 	githubOwner = getInput("owner")
   githubCommitMsg = getInput("headcommit")
