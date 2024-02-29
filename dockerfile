@@ -1,4 +1,4 @@
-ARG REGISTRY=containerregistrydev.azurecr.io
+ARG REGISTRY
 FROM $REGISTRY/library/golang:1.21-alpine as debug
 WORKDIR /src
 COPY ./src/go.mod /src/
