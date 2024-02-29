@@ -1,10 +1,11 @@
-FROM golang:1.19-alpine as debug
+ARG REGISTRY=containerregistrydev.azurecr.io
+FROM $REGISTRY/library/golang:1.21-alpine as debug
 WORKDIR /src
 COPY ./src/go.mod /src/
 COPY ./src/go.sum /src/
 RUN go mod download
 
-FROM golang:1.19-alpine as build
+FROM $REGISTRY/library/golang:1.21-alpine as build
 WORKDIR /app
 COPY ./src/go.mod /app/ 
 COPY ./src/go.sum /app/
